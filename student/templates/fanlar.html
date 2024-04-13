@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'data' %}
+<h3>Talabalar qaysi fanlarga qiziqadi?</h2>
+{% for x in fanlar %}
+    <p>
+    <u><h4>{{ x.fanlar_nomi }}</h4></u>
+    <div align = 'left'>
+        {{ x.tarkibi|safe }}
+    </div>
+    <div>
+        {% if x.pdf_fayl %}
+            <div>            
+                <img src="{% static 'pdf.png' %}"/>
+            </div>
+            <strong>         
+                   <a href = "{% url 'download' x.pdf_fayl %}">PDF YUKLAB OLISH</a>
+            </strong>
+        {% endif %}
+    </div>
+    </p>
+{% endfor %}
+{% endblock %}
+
+{% block 'footer' %}
+    <p>HAR KUN YANGI BILIMLARNI O'RGANING !!!</p>
+{% endblock %}

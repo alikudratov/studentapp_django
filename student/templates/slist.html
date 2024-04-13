@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.jqueryui.min.css">
+    <script type="javascript" src="https://cdn.datatables.net/2.0.3/js/dataTables.min.js"></script>
+    <script type="javascript" src="https://cdn.datatables.net/2.0.3/js/dataTables.jqueryui.min.js"></script>
+    <script type="javascript">
+        $(document).ready( function () {
+            $('#student-table').DataTable();
+        } );
+    </script>
+</head>
+<body>
+    <table id="student-table" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+            <tr>
+                <td>{{ student.fullname }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block 'data' %}
+<h4>Talabalar</h4>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit">Update</button>
+</form>
+
+{% endblock %}
+
+{% block 'footer' %}
+</br> Siz quyidagi manzildasiz: </br> 
+      {{  request.path  }}</br>
+{% endblock %}

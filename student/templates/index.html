@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block 'data' %}
+</br>
+<form action="/" method="get">
+  {{ search_form }}
+  <input type="submit" value="Izlash">
+</form></br>
+
+<h3 class="u-text u-text-default u-text-1">Talabalar soni: {{ count }} nafar</h3>
+<p class="u-text u-text-2">
+  {% for x in students %}
+    <a href="{% url 'talabalink' x.id %}">{{ x.fullname }} ({{ x.guruh }})</a></br>
+  {% endfor %}       
+
+</p>
+<a href="/manager" class="u-active-none u-border-2 u-border-palette-1-base u-btn u-btn-rectangle u-button-style u-hover-none u-none u-btn-1">Manager panel</a>
+{% endblock %}
+
+{% block 'footer' %}
+<p class="u-small-text u-text u-text-variant u-text-1"></p>
+  Call markaz +998 95 200 01 01
+  {% if user.is_authenticated %}
+  <p>
+    <form method="post" action="/manager/logout/">
+      {% csrf_token %}
+      <button type="submit">Tizimdan chiqish</button>
+  </form>
+  </p>
+  {% endif %}
+
+  {% include 'statistika.html' %}
+
+{% endblock %}

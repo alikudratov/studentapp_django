@@ -1,0 +1,6 @@
+{
+    "familiya" : "{{ talaba.familiya }}",
+    "ism" : "{{ talaba.ism }}",
+    "telefon_raqami" : "{{ talaba.telefon_raqami }}",
+    "viloyat" : "{{ talaba.viloyat }}"
+}

@@ -1,0 +1,21 @@
+  <p>
+    
+    <u><strong>Jami statistika:</strong></u></br>
+
+    {% for x in statistika.guruh_c %}
+        <strong style="color: bisque;">{{ x.guruh__guruh_raqami }}</strong> - {{ x.count }} nafar
+    {% endfor %}</br>
+    
+    {% for x in statistika.jinsi_c %}
+        <strong style="color: bisque;">{{ x.jinsi__jins }}</strong> - {{ x.count }} nafar
+    {% endfor %}</br>
+    
+    {% for x in statistika.viloyat_c %}
+        <strong style="color: bisque;">{{ x.viloyat__viloyat_nomi }}</strong> - {{ x.count }} nafar
+    {% endfor %}</br>
+    
+    {% for x in statistika.user_c %}
+        <strong style="color: bisque;">{{ x.created_by__username }} tomonidan kiritilgan</strong> - {{ x.count }} nafar
+    {% endfor %}</br>
+
+  </p>

@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'data' %}
+      
+{% if user.is_authenticated %}
+      <h4>
+            <strong><div>{{ talaba.fullname|upper }}</div></strong>
+            <div><img style="border-radius:30px;" src="{% url 'download' talaba.image %}"/></div>
+            <strong>Familiya:</strong> {{ talaba.familiya }} </br>
+            <strong>Ismi:</strong> {{ talaba.ism }} </br>
+            <strong>Otasining ismi:</strong> {{ talaba.otasining_ismi }} </br>
+            <strong>Tavallud kuni:</strong> {{ talaba.tavallud_kuni|date:"d.m.Y" }} </br>
+            <strong>Yashash manzili:</strong> {{ talaba.yashash_manzili }} </br>
+            <strong>Telefon raqami:</strong> {{ talaba.telefon_raqami }} </br>
+            <strong>Guruhi:</strong> {{ talaba.guruh }} </br>
+            <strong>Jinsi:</strong> {{ talaba.jinsi }} </br>
+            <strong>Viloyat:</strong> {{ talaba.viloyat }} </br>
+            <strong>Qaysi fanlarga qiziqadi:</strong>
+            {% for x in talaba.fanlar.all %}
+                  {{ x }}
+            {% endfor %}
+            </br></br>
+      <div><a target="_blank" href="{% url 'webservice' talaba.id %}">
+            <img style="vertical-align: baseline" src="{% static 'json-file.png' %}"/>
+            JSON FORMAT</a></div>
+      </h4>
+
+      <p>
+
+            {% if izohlar %}
+                  <h4>Izohlar</h4>
+            {% endif %}
+
+            {% for x in izohlar %}
+                  <div 
+                  style="background-color: beige; 
+                  padding: 20px; margin-bottom: 10px; 
+                  border: 1px; border-color:black; 
+                  border-style: solid;">
+                  <strong>{{ x.ismingiz|upper }}</strong></br>{{ x.izoh }}</div>
+            {% endfor %}
+
+            <p>
+                  <strong>Izoh qoldirish:</strong></br>
+                  <form action="{{  request.path  }}" method="post">
+                        {% csrf_token %}
+                              <input type="hidden" name="talaba_id" required id="id_talaba_id" value="{{ talaba.id }}">
+                            <p>
+                              <label for="id_ismingiz">Ismingiz:</label>
+                              <input type="text" name="ismingiz" maxlength="50" required id="id_ismingiz">
+                            </p>
+                          
+                            <p>
+                              <label for="id_izoh">Izoh:</label>
+                              <textarea name="izoh" cols="40" rows="10" required id="id_izoh"></textarea>
+                            </p>
+
+                        <input type="submit" value="Izoh yuborish">
+                    </form>
+            </p>
+      </p>
+
+{% else %}
+      Iltimos avtorizatsiyadan o'ting!
+{% endif %}
+
+{% endblock %}
+
+{% block 'footer' %}
+</br> Siz quyidagi manzildasiz: </br> 
+      {{  request.path  }}</br>
+      {% include 'statistika.html' %}
+{% endblock %}
