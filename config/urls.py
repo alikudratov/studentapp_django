@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-from student.views import index, talabapage, webservice, fanlarpage, download_file, TalabaUpdateView, datatable
+from student.views import index, talabapage, webservice, fanlarpage, download_file, TalabaUpdateView, datatable, generate_pdf
 
 urlpatterns = [
     path('manager/', admin.site.urls),
@@ -12,7 +12,8 @@ urlpatterns = [
     path('tinymce/', include('tinymce.urls')),
     path('talaba/<int:pk>/update/', TalabaUpdateView.as_view(), name='your_model_update'),
     #path('talaba/list/', TalabaListView.as_view(), name='talaba'),
-    path('datatable', datatable)
+    path('datatable', datatable),
+    path('pdf', generate_pdf)
 ]
 
 admin.site.site_header = "Talabalar MB"

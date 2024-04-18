@@ -1,0 +1,19 @@
+      {% for talaba in allstudents %}
+      <h4>
+            <strong><div>{{ talaba.fullname|upper }}</div></strong>
+            <div><img height="200px" src="http://127.0.0.1:8001/{% url 'download' talaba.image %}"/></div>
+            <strong>Familiya:</strong> {{ talaba.familiya }} </br>
+            <strong>Ismi:</strong> {{ talaba.ism }} </br>
+            <strong>Otasining ismi:</strong> {{ talaba.otasining_ismi }} </br>
+            <strong>Tavallud kuni:</strong> {{ talaba.tavallud_kuni|date:"d.m.Y" }} </br>
+            <strong>Yashash manzili:</strong> {{ talaba.yashash_manzili }} </br>
+            <strong>Telefon raqami:</strong> {{ talaba.telefon_raqami }} </br>
+            <strong>Guruhi:</strong> {{ talaba.guruh }} </br>
+            <strong>Jinsi:</strong> {{ talaba.jinsi }} </br>
+            <strong>Viloyat:</strong> {{ talaba.viloyat }} </br>
+            <strong>Qaysi fanlarga qiziqadi:</strong>
+            {% for x in talaba.fanlar.all %}
+                  {{ x }}, 
+            {% endfor %}
+        </h4></br>
+        {% endfor %}  

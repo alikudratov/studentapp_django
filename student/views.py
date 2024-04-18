@@ -6,6 +6,10 @@ from django.views.generic import ListView, UpdateView
 from django.urls import reverse_lazy
 from django.db.models import Count
 
+from django.http import HttpResponse
+from django.template.loader import get_template
+from xhtml2pdf import pisa
+
 from .models import Talaba, Guruh, Fanlar, Comments, Sozlamalar
 from .forms import MurojaatForm, SearchForm, CommentsForm
 
@@ -114,3 +118,21 @@ class TalabaUpdateView(UpdateView):
 def datatable(request):
     students = Talaba.objects.all()
     return render(request, 'slist.html', {'students' : students})
+
+def generate_pdf(request):
+    # Retrieve HTML content from a template or generate it dynamically
+    talaba_one = Talaba.objects.all()
+    template = get_template('pdf.html')
+    html = template.render({'allstudents': talaba_one})
+
+    # Create a PDF response
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'filename="generated_pdf.pdf"'
+
+    # Generate PDF from HTML
+    pisa_status = pisa.CreatePDF(html, dest=response)
+    
+    if pisa_status.err:
+        return HttpResponse('Error generating PDF: %s' % pisa_status.err)
+
+    return response
