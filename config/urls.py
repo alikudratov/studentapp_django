@@ -13,7 +13,9 @@ urlpatterns = [
     path('talaba/<int:pk>/update/', TalabaUpdateView.as_view(), name='your_model_update'),
     #path('talaba/list/', TalabaListView.as_view(), name='talaba'),
     path('datatable', datatable),
-    path('pdf', generate_pdf)
+    path('pdf', generate_pdf),
+    path('qr_code/', include('qr_code.urls', namespace="qr_code")),
+
 ]
 
 admin.site.site_header = "Talabalar MB"

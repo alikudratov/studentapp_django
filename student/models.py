@@ -94,6 +94,9 @@ class Talaba(models.Model):
     def fullname(self):
         return f"{self.familiya} {self.ism} {self.otasining_ismi}"
     
+    def full_url(self):
+        return f"http://127.0.0.1:8001/talaba/{self.id}.jspx"
+    
 class Murojaat(models.Model):
     fio = models.CharField(max_length=50, verbose_name='Familiya Ismingiz')
     telefon = models.CharField(max_length=50)

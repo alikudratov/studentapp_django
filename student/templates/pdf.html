@@ -1,3 +1,5 @@
+      {% load qr_code %}
+
       {% for talaba in allstudents %}
       <h4>
             <strong><div>{{ talaba.fullname|upper }}</div></strong>
@@ -16,4 +18,5 @@
                   {{ x }}, 
             {% endfor %}
         </h4></br>
+        <img src="http://127.0.0.1:8001/{% qr_url_from_text talaba.full_url %}" alt="Hello World!">
         {% endfor %}  

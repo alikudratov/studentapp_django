@@ -5,6 +5,8 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, UpdateView
 from django.urls import reverse_lazy
 from django.db.models import Count
+#from qr_code.qr_code_views import make_qr_code
+
 
 from django.http import HttpResponse
 from django.template.loader import get_template
@@ -121,6 +123,7 @@ def datatable(request):
 
 def generate_pdf(request):
     # Retrieve HTML content from a template or generate it dynamically
+    #qr_img = make_qr_code('https://my.gov.uz/uz', image_factory=None)
     talaba_one = Talaba.objects.all()
     template = get_template('pdf.html')
     html = template.render({'allstudents': talaba_one})
