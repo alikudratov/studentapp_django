@@ -1,3 +1,11 @@
+Установка
+Все пакеты из requirements.txt можно установить одним махом, пип такое умеет: pip install -r requirements.txt.
+
+
+pip freeze
+
+
+
 asgiref==3.7.2
 certifi==2024.2.2
 charset-normalizer==3.3.2
