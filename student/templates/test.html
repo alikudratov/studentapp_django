@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load crispy_forms_tags %} 
+
 
 {% block 'data' %}
       
@@ -45,17 +47,7 @@
                   <strong>Izoh qoldirish:</strong></br>
                   <form action="{{  request.path  }}" method="post">
                         {% csrf_token %}
-                              <input type="hidden" name="talaba_id" required id="id_talaba_id" value="{{ talaba.id }}">
-                            <p>
-                              <label for="id_ismingiz">Ismingiz:</label>
-                              <input type="text" name="ismingiz" maxlength="50" required id="id_ismingiz">
-                            </p>
-                          
-                            <p>
-                              <label for="id_izoh">Izoh:</label>
-                              <textarea name="izoh" cols="40" rows="10" required id="id_izoh"></textarea>
-                            </p>
-
+                              {{ comment_form|crispy }}
                         <input type="submit" value="Izoh yuborish">
                     </form>
             </p>

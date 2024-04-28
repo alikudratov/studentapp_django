@@ -80,7 +80,7 @@ def talabapage(request, id):
 
     comments_list = Comments.objects.filter(talaba_id = id, published = True).order_by("-id")
     
-    comment_form = CommentsForm(request.POST or None)
+    comment_form = CommentsForm(request.POST or None, initial={'talaba_id':id})
 
     if comment_form.is_valid():
         comment_form.save()
