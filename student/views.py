@@ -13,7 +13,7 @@ from django.template.loader import get_template
 from xhtml2pdf import pisa
 
 from .models import Talaba, Guruh, Fanlar, Comments, Sozlamalar
-from .forms import MurojaatForm, SearchForm, CommentsForm
+from .forms import MurojaatForm, SearchForm, CommentsForm, TalabaUpdateForm
 
 def appsetting():
     settings = {
@@ -139,3 +139,8 @@ def generate_pdf(request):
         return HttpResponse('Error generating PDF: %s' % pisa_status.err)
 
     return response
+
+def update_talaba(request):
+    data = Talaba.objects.get(pk=2)
+    talabaform = TalabaUpdateForm(instance=data)
+    return render(request,'update.html', {'talabaform':talabaform})

@@ -1,9 +1,10 @@
 from django.contrib import admin
 from django.urls import path, include
-from student.views import index, talabapage, webservice, fanlarpage, download_file, TalabaUpdateView, datatable, generate_pdf
+from student.views import *
 
 urlpatterns = [
     path('manager/', admin.site.urls),
+    path('update_example', update_talaba),
     path('', index, name='index'),
     path('fanlar.jspx', fanlarpage),
     path('talaba/<int:id>.jspx', talabapage, name="talabalink"),

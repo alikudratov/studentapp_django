@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %} 
+
+
+{% block 'data' %}
+    
+    <h3>Ma'lumotlarni yangilash</h3>
+
+    {{ talabaform|crispy }}
+
+{% endblock %}
+
+{% block 'footer' %}
+    <p>HAR KUN YANGI BILIMLARNI O'RGANING !!!</p>
+{% endblock %}

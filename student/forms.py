@@ -1,9 +1,14 @@
 from django import forms
-from .models import Murojaat, Comments
+from .models import *
     
 class MurojaatForm(forms.ModelForm):
     class Meta:
         model = Murojaat
+        fields = '__all__'
+
+class TalabaUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Talaba
         fields = '__all__'
 
 class CommentsForm(forms.ModelForm):
