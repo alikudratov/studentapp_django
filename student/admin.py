@@ -1,9 +1,14 @@
 from django.contrib import admin
 from import_export.admin import ExportActionMixin
-from .models import Guruh, Jinsi, Viloyatlar, Talaba, Murojaat, Fanlar, Sozlamalar, Comments, Profile
+from .models import *
 from django.utils.html import format_html
 import admin_thumbnails
 
+class QarindoshInline(admin.StackedInline):
+    model = Qarindosh
+    show_change_link = True
+    can_delete = False
+    max_num = 4
 
 def sozlama_off(modeladmin, request, queryset):
     for sozlama in queryset:
@@ -36,6 +41,9 @@ class TalabaAdmin(ExportActionMixin, admin.ModelAdmin):
     #raw_id_fields = ["fanlar"]
     ordering = ['id']
     list_per_page = 3
+    inlines = [
+        QarindoshInline,
+    ]
 
 class ViloyatlarAdmin(admin.ModelAdmin):
     search_fields = ["viloyat_nomi"]
@@ -71,3 +79,5 @@ class ProfileAdmin(admin.ModelAdmin):
     list_display = ['foydalanuvchi', 'lavozimi', 'tavallud_kuni']
 
 admin.site.register(Profile, ProfileAdmin)
+
+admin.site.register(Qarindosh)

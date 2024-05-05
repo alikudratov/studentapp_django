@@ -1,0 +1,312 @@
+admin.LogEntry
+    Fields:
+        id -
+        action_time -
+        user -
+        content_type -
+        object_id -
+        object_repr -
+        action_flag -
+        change_message -
+    Methods (non-private/internal):
+        adelete()
+        arefresh_from_db()
+        asave()
+        get_action_flag_display()
+        get_admin_url()
+        get_change_message()
+        get_constraints()
+        get_edited_object()
+        get_next_by_action_time()
+        get_previous_by_action_time()
+        is_addition()
+        is_change()
+        is_deletion()
+        validate_constraints()
+
+auth.Group
+    Fields:
+        user -
+        id -
+        name -
+        permissions -
+    Methods (non-private/internal):
+        adelete()
+        arefresh_from_db()
+        asave()
+        get_constraints()
+        natural_key()
+        validate_constraints()
+
+auth.Permission
+    Fields:
+        group -
+        user -
+        id -
+        name -
+        content_type -
+        codename -
+    Methods (non-private/internal):
+        adelete()
+        arefresh_from_db()
+        asave()
+        get_constraints()
+        natural_key()
+        validate_constraints()
+
+auth.User
+    Fields:
+        logentry -
+        profile -
+        talaba -
+        id -
+        password -
+        last_login -
+        is_superuser -
+        username -
+        first_name -
+        last_name -
+        email -
+        is_staff -
+        is_active -
+        date_joined -
+        groups -
+        user_permissions -
+    Methods (non-private/internal):
+        acheck_password()
+        adelete()
+        arefresh_from_db()
+        asave()
+        check_password()
+        email_user()
+        get_all_permissions()
+        get_constraints()
+        get_email_field_name()
+        get_full_name()
+        get_group_permissions()
+        get_next_by_date_joined()
+        get_previous_by_date_joined()
+        get_session_auth_fallback_hash()
+        get_session_auth_hash()
+        get_short_name()
+        get_user_permissions()
+        get_username()
+        has_module_perms()
+        has_perm()
+        has_perms()
+        has_usable_password()
+        natural_key()
+        normalize_username()
+        set_password()
+        set_unusable_password()
+        username_validator()
+        validate_constraints()
+
+contenttypes.ContentType
+    Fields:
+        logentry -
+        permission -
+        id -
+        app_label -
+        model -
+    Methods (non-private/internal):
+        adelete()
+        arefresh_from_db()
+        asave()
+        get_all_objects_for_this_type()
+        get_constraints()
+        get_object_for_this_type()
+        model_class()
+        natural_key()
+        validate_constraints()
+
+dbapps.MyModel
+    Fields:
+        id -
+        decimal_field -
+        duration_field -
+        email_field -
+        file_path_field -
+        float_field -
+        generic_ip_address_field -
+        json_field -
+        url_field -
+        uuid_field -
+    Methods (non-private/internal):
+        adelete()
+        arefresh_from_db()
+        asave()
+        get_constraints()
+        validate_constraints()
+
+sessions.Session
+    Fields:
+        session_key -
+        session_data -
+        expire_date -
+    Methods (non-private/internal):
+        adelete()
+        arefresh_from_db()
+        asave()
+        get_constraints()
+        get_decoded()
+        get_next_by_expire_date()
+        get_previous_by_expire_date()
+        get_session_store_class()
+        validate_constraints()
+
+student.Comments
+    Fields:
+        id -
+        talaba_id -
+        ismingiz -
+        izoh -
+        sanasi -
+        published -
+    Methods (non-private/internal):
+        adelete()
+        arefresh_from_db()
+        asave()
+        get_constraints()
+        get_next_by_sanasi()
+        get_previous_by_sanasi()
+        validate_constraints()
+
+student.Fanlar
+    Fields:
+        talaba -
+        id -
+        fanlar_nomi -
+        tarkibi -
+        pdf_fayl -
+    Methods (non-private/internal):
+        adelete()
+        arefresh_from_db()
+        asave()
+        get_constraints()
+        validate_constraints()
+
+student.Guruh
+    Fields:
+        all_students -
+        id -
+        guruh_raqami -
+        guruh_rahbari -
+    Methods (non-private/internal):
+        adelete()
+        arefresh_from_db()
+        asave()
+        get_constraints()
+        validate_constraints()
+
+student.Jinsi
+    Fields:
+        talaba -
+        id -
+        jins -
+    Methods (non-private/internal):
+        adelete()
+        arefresh_from_db()
+        asave()
+        get_constraints()
+        validate_constraints()
+
+student.Murojaat
+    Fields:
+        id -
+        fio -
+        telefon -
+        viloyat -
+        time -
+    Methods (non-private/internal):
+        adelete()
+        arefresh_from_db()
+        asave()
+        get_constraints()
+        get_next_by_time()
+        get_previous_by_time()
+        validate_constraints()
+
+student.Profile
+    Fields:
+        id -
+        lavozimi -
+        tavallud_kuni -
+        foydalanuvchi -
+    Methods (non-private/internal):
+        adelete()
+        arefresh_from_db()
+        asave()
+        get_constraints()
+        get_next_by_tavallud_kuni()
+        get_previous_by_tavallud_kuni()
+        validate_constraints()
+
+student.Qarindosh
+    Fields:
+        id -
+        talaba -
+        fish -
+        telefon -
+    Methods (non-private/internal):
+        adelete()
+        arefresh_from_db()
+        asave()
+        get_constraints()
+        validate_constraints()
+
+student.Sozlamalar
+    Fields:
+        id -
+        sozlama_nomi -
+        kodi -
+        holati -
+    Methods (non-private/internal):
+        adelete()
+        arefresh_from_db()
+        asave()
+        get_constraints()
+        validate_constraints()
+
+student.Talaba
+    Fields:
+        qarindosh -
+        id -
+        familiya -
+        ism -
+        otasining_ismi -
+        tavallud_kuni -
+        yashash_manzili -
+        telefon_raqami -
+        guruh -
+        jinsi -
+        viloyat -
+        image -
+        created_by -
+        slug -
+        fanlar -
+    Methods (non-private/internal):
+        adelete()
+        arefresh_from_db()
+        asave()
+        full_url()
+        fullname()
+        get_constraints()
+        get_next_by_tavallud_kuni()
+        get_previous_by_tavallud_kuni()
+        validate_constraints()
+
+student.Viloyatlar
+    Fields:
+        talaba -
+        murojaat -
+        id -
+        viloyat_nomi -
+    Methods (non-private/internal):
+        adelete()
+        arefresh_from_db()
+        asave()
+        get_constraints()
+        validate_constraints()
+
+Total Models Listed: 17

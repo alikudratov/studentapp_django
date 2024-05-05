@@ -140,3 +140,21 @@ class Comments(models.Model):
 
     def __str__(self):
         return self.izoh
+    
+#class Qarindosh(models.Model):
+    #talaba = models.ForeignKey(Talaba, on_delete=models.CASCADE)
+    #fish = models.CharField(max_length=100)
+    #telefon = models.CharField(max_length=30)
+
+class Qarindosh(models.Model):
+    talaba = models.ForeignKey(Talaba, on_delete=models.CASCADE)
+    fish = models.CharField(max_length=100)
+    telefon = models.CharField(max_length=100)
+
+    class Meta:
+        managed = True
+        db_table = 'qarindosh'
+        verbose_name_plural = 'Qarindoshlar'
+
+    def __str__(self):
+        return self.fish

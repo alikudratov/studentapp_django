@@ -147,3 +147,5 @@ import os
 MEDIA_ROOT = os.path.join(BASE_DIR, 'data/')
 
 MEDIA_URL = '/media/'
+
+os.environ.setdefault('PYTHONDONTWRITEBYTECODE', '1')
