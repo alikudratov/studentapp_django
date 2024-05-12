@@ -158,3 +158,14 @@ class Qarindosh(models.Model):
 
     def __str__(self):
         return self.fish
+
+
+class PageVisits(models.Model):
+    ip_address = models.TextField(editable=False)
+    path = models.TextField(editable=False)
+    username = models.TextField(editable=False)
+    time = models.DateTimeField(auto_now_add=True, editable=False)
+
+    class Meta:
+        managed = True
+        db_table = 'page_visits'

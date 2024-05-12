@@ -6,14 +6,19 @@ from django.views.generic import ListView, UpdateView
 from django.urls import reverse_lazy
 from django.db.models import Count
 #from qr_code.qr_code_views import make_qr_code
-
-
 from django.http import HttpResponse
 from django.template.loader import get_template
 from xhtml2pdf import pisa
 
-from .models import Talaba, Guruh, Fanlar, Comments, Sozlamalar
-from .forms import MurojaatForm, SearchForm, CommentsForm, TalabaUpdateForm
+from .models import *
+from .forms import *
+
+def pagevisits(request):
+    newvisit = PageVisits()
+    newvisit.ip_address = request.META['REMOTE_ADDR']
+    newvisit.path = request.path
+    newvisit.username = request.user
+    newvisit.save()
 
 def appsetting():
     settings = {
@@ -48,6 +53,8 @@ def statistics():
 
 def index(request):
 
+    pagevisits(request)
+
     search_form = SearchForm(request.GET or None)
 
     if search_form.is_valid():
@@ -76,6 +83,9 @@ def index(request):
     return render(request, 'index.html', context)
 
 def talabapage(request, id):
+
+    pagevisits(request)
+    
     talaba1 = Talaba.objects.get(id=id)
 
     comments_list = Comments.objects.filter(talaba_id = id, published = True).order_by("-id")
@@ -94,15 +104,24 @@ def talabapage(request, id):
 
 @login_required(login_url="/manager")
 def fanlarpage(request):
+    
+    pagevisits(request)
+
     fanlar1 = Fanlar.objects.all()
     return render(request, 'fanlar.html', {'fanlar': fanlar1})
 
 def webservice(request, id):
+
+    pagevisits(request)
+
     talaba1 = Talaba.objects.filter(id=id).values()
     data = list(talaba1)
     return JsonResponse(data, safe=False)
 
 def download_file(request, filename):
+
+    pagevisits(request)
+
     return FileResponse(open('data/' + filename, 'rb'), as_attachment=False)
 
 class TalabaListView(ListView):
@@ -122,6 +141,9 @@ def datatable(request):
     return render(request, 'slist.html', {'students' : students})
 
 def generate_pdf(request):
+
+    pagevisits(request)
+
     # Retrieve HTML content from a template or generate it dynamically
     #qr_img = make_qr_code('https://my.gov.uz/uz', image_factory=None)
     talaba_one = Talaba.objects.all()
@@ -141,6 +163,9 @@ def generate_pdf(request):
     return response
 
 def update_talaba(request):
+
+    pagevisits(request)
+
     data = Talaba.objects.get(pk=2)
     talabaform = TalabaUpdateForm(instance=data)
     return render(request,'update.html', {'talabaform':talabaform})

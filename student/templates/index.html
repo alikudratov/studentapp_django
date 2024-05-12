@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %} 
+
 
 {% block 'data' %}
 </br>
 <form action="/" method="get">
-  {{ search_form }}
+  {{ search_form|crispy }}
   <input type="submit" value="Izlash">
 </form></br>
 

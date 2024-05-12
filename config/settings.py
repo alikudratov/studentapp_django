@@ -32,7 +32,8 @@ INSTALLED_APPS = [
     'django_extensions',
     'crispy_forms',
     'crispy_bootstrap4',
-    'dbapps'
+    'dbapps',
+    'django_recaptcha',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -149,3 +150,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'data/')
 MEDIA_URL = '/media/'
 
 os.environ.setdefault('PYTHONDONTWRITEBYTECODE', '1')
+
+RECAPTCHA_PUBLIC_KEY = '6LdcgdIpAAAAAH76sSf8aCckrpaQQf_U73M8XnbB'
+RECAPTCHA_PRIVATE_KEY = '6LdcgdIpAAAAABQLZFNgZKhVlwwPqnP6F3UNdlQu'
