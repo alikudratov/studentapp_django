@@ -108,7 +108,10 @@ def fanlarpage(request):
     pagevisits(request)
 
     fanlar1 = Fanlar.objects.all()
-    return render(request, 'fanlar.html', {'fanlar': fanlar1})
+
+    oxirgi_talaba = Talaba.objects.last()
+
+    return render(request, 'fanlar.html', {'fanlar': fanlar1, 'oxirgi_talaba':oxirgi_talaba})
 
 def webservice(request, id):
 
