@@ -9,6 +9,8 @@ from django.db.models import Count
 from django.http import HttpResponse
 from django.template.loader import get_template
 from xhtml2pdf import pisa
+from django.contrib.auth import authenticate, login, logout
+
 
 from .models import *
 from .forms import *
@@ -172,3 +174,19 @@ def update_talaba(request):
     data = Talaba.objects.get(pk=2)
     talabaform = TalabaUpdateForm(instance=data)
     return render(request,'update.html', {'talabaform':talabaform})
+
+def login_view(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('index')
+        else:
+            return render(request, 'login.html', {'error': 'Invalid username or password'})
+    return render(request, 'login.html')
+
+def logout_view(request):
+    logout(request)
+    return redirect('login')
