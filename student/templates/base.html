@@ -52,7 +52,8 @@
           </div>
           <div class="u-nav-container">
             <ul class="u-nav u-unstyled u-nav-1">
-                <li class="u-nav-item"><strong><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="/manager" style="padding: 10px 20px;">Manager Panel</a></strong>
+                <li class="u-nav-item"><strong><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="/manager" style="padding: 10px 20px;">Manager Panel</a> | <a href="{% url 'login' %}">Login</a>
+                </strong>
                   {% if settings.code100.holati %}  
                     {{  request.user  }}, 
                   {% endif %}

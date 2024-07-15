@@ -19,10 +19,8 @@
             <strong>Guruh rahbari:</strong> {{ talaba.guruh.guruh_rahbari }} </br>
             <strong>Jinsi:</strong> {{ talaba.jinsi }} </br>
             <strong>Viloyat:</strong> {{ talaba.viloyat }} </br>
-            <strong>Qaysi fanlarga qiziqadi:</strong>
-            {% for x in talaba.fanlar.all %}
-                  {{ x }}
-            {% endfor %}
+            <strong>Qaysi fanlarga qiziqadi: </strong>{{ talaba.fanlar.all|join:", " }}
+            
             </br></br>
       <div><a target="_blank" href="{% url 'webservice' talaba.id %}">
             <img style="vertical-align: baseline" src="{% static 'json-file.png' %}"/>
@@ -32,7 +30,7 @@
       <p>
 
             {% if izohlar %}
-                  <h4>Izohlar</h4>
+                  <h4>Izohlar soni: {{ izohlar|length }}</h4>
             {% endif %}
 
             {% for x in izohlar %}

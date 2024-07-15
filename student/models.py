@@ -72,9 +72,9 @@ class Talaba(models.Model):
     tavallud_kuni = models.DateField()
     yashash_manzili = models.CharField(max_length=200)
     telefon_raqami = models.CharField(max_length=100)
-    guruh = models.ForeignKey('Guruh', on_delete=models.DO_NOTHING, db_column='guruh', related_name= 'all_students')
-    jinsi = models.ForeignKey('Jinsi', on_delete=models.DO_NOTHING, db_column='jinsi')
-    viloyat = models.ForeignKey('Viloyatlar', on_delete=models.DO_NOTHING, db_column='viloyat')
+    guruh = models.ForeignKey('Guruh', on_delete=models.DO_NOTHING, db_column='guruh', related_name='talabalar')
+    jinsi = models.ForeignKey('Jinsi', on_delete=models.DO_NOTHING, db_column='jinsi', related_name='talabalar')
+    viloyat = models.ForeignKey('Viloyatlar', on_delete=models.DO_NOTHING, db_column='viloyat', related_name='talabalar')
     fanlar = models.ManyToManyField('Fanlar')
     image = models.ImageField(upload_to='images')
     created_by = CurrentUserField()
@@ -127,7 +127,7 @@ class Sozlamalar(models.Model):
         return self.sozlama_nomi
 
 class Comments(models.Model):
-    talaba_id = models.IntegerField()
+    talaba = models.ForeignKey(Talaba, on_delete=models.CASCADE)
     ismingiz = models.CharField(max_length=50)
     izoh = models.TextField()
     sanasi = models.DateTimeField(auto_now_add = True)

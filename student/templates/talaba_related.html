@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+
+{% block 'data' %}
+    
+    <h3>Talabalar ro'yxati</h3><hr>
+
+    {% for x in guruhlar %}
+    <h4>        {{ x }} - talabalari</br>    </h4>
+        {% for y in x.talabalar.all %}
+            {{ y.fullname }}</br>
+        {% endfor %}    
+    {% endfor %}
+    <hr>
+
+    {% for x in jinslar %}
+    <h4>        {{ x }} - talabalar</br>    </h4>
+        {% for y in x.talabalar.all %}
+            {{ y.fullname }}</br>
+        {% endfor %}    
+    {% endfor %}
+    <hr>
+
+    {% for x in viloyat %}
+    <h4>        {{ x }} - talabalari</br>    </h4>
+        {% for y in x.talabalar.all %}
+            {{ y.fullname }}</br>
+        {% endfor %}    
+    {% endfor %}
+    <hr>
+
+
+
+{% endblock %}
+
+{% block 'footer' %}
+    <p>HAR KUN YANGI BILIMLARNI O'RGANING !!!</p>
+{% endblock %}

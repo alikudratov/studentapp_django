@@ -17,6 +17,13 @@
 
 </p>
 <a href="/manager" class="u-active-none u-border-2 u-border-palette-1-base u-btn u-btn-rectangle u-button-style u-hover-none u-none u-btn-1">Manager panel</a>
+
+<h2>Ro'yxatdan o'tish</h2>
+<form method="post">
+  {{ user_reg_form|crispy }}</br>
+  {% csrf_token %}
+  <button type="submit">Ro`yxatdan o`tish</button>
+</form>
 {% endblock %}
 
 {% block 'footer' %}

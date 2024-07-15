@@ -10,6 +10,13 @@ class QarindoshInline(admin.StackedInline):
     can_delete = False
     max_num = 4
 
+class CommentsInline(admin.TabularInline):
+    model = Comments
+    show_change_link = True
+    can_delete = False
+    max_num = 4
+    readonly_fields = ['izoh']
+
 def sozlama_off(modeladmin, request, queryset):
     for sozlama in queryset:
         sozlama.holati = False
@@ -51,6 +58,7 @@ class TalabaAdmin(ExportActionMixin, admin.ModelAdmin):
     #list_per_page = 3
     inlines = [
         QarindoshInline,
+        CommentsInline,
     ]
 
 class ViloyatlarAdmin(admin.ModelAdmin):
@@ -78,7 +86,7 @@ admin.site.register(Sozlamalar, SozlamalarAdmin)
 class CommentsAdmin(admin.ModelAdmin):
     list_display = ['izoh', 'sanasi', 'published']
     list_filter = ['published']
-    readonly_fields = ['talaba_id']
+    readonly_fields = ['talaba']
 
 
 admin.site.register(Comments, CommentsAdmin)

@@ -18,6 +18,8 @@ urlpatterns = [
     path('qr_code/', include('qr_code.urls', namespace="qr_code")),
     path('login/',  login_view, name='login'),
     path('logout/', logout_view, name='logout'),
+    path('talaba_related/', talaba_related, name='talaba_related'),
+
 
 ]
 

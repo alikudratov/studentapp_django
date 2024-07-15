@@ -4,7 +4,13 @@
 
 
 {% block 'data' %}
-    
+
+{% if user.is_authenticated %}
+    Siz avtorizatsiyadan o'tgansiz!
+    </br>Saytdan mazza qilib foydalaning!</br>
+    <center><img src="https://edexec.co.uk/wp-content/uploads/2023/08/iStock-1124532572.jpg" width="200px"/></center>
+{% else %}
+
 <h2>Login</h2>
 {% if error %}
     <p style="color: red;">{{ error }}</p>
@@ -17,7 +23,7 @@
     <input type="password" id="password" name="password" required><br><br>
     <button type="submit">Login</button>
 </form>
-
+{% endif %}
 {% endblock %}
 
 {% block 'footer' %}

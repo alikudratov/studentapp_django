@@ -1,8 +1,16 @@
 from django import forms
 from .models import *
 from django_recaptcha.fields import ReCaptchaField
+from django.contrib.auth.models import User
 
-    
+class UserRegForm(forms.ModelForm):
+    #captcha = ReCaptchaField()
+
+    class Meta:
+        model = User
+        fields = ['username', 'password']
+        #fields = '__all__'
+
 class MurojaatForm(forms.ModelForm):
     captcha = ReCaptchaField()
 
@@ -23,7 +31,7 @@ class CommentsForm(forms.ModelForm):
         fields = '__all__'
         exclude = ['published']
         widgets = {
-            'talaba_id': forms.HiddenInput(),
+            'talaba': forms.HiddenInput(),
         }
 
 class SearchForm(forms.Form):

@@ -57,6 +57,12 @@ def index(request):
 
     pagevisits(request)
 
+    user_reg_form = UserRegForm(request.POST or None)
+
+    if user_reg_form.is_valid():
+        user_reg_form.save()
+        return redirect('login')
+
     search_form = SearchForm(request.GET or None)
 
     if search_form.is_valid():
@@ -79,7 +85,8 @@ def index(request):
         'form' : form, 
         'search_form' : search_form,
         'statistika': statistics(),
-        'settings' : appsetting()
+        'settings' : appsetting(),
+        'user_reg_form' : user_reg_form,
         }
     
     return render(request, 'index.html', context)
@@ -92,7 +99,7 @@ def talabapage(request, id):
 
     comments_list = Comments.objects.filter(talaba_id = id, published = True).order_by("-id")
     
-    comment_form = CommentsForm(request.POST or None, initial={'talaba_id':id})
+    comment_form = CommentsForm(request.POST or None, initial={'talaba':id})
 
     if comment_form.is_valid():
         comment_form.save()
@@ -104,7 +111,7 @@ def talabapage(request, id):
                    'izohlar':comments_list,
                    'statistika': statistics()})
 
-@login_required(login_url="/manager")
+@login_required(login_url="/login")
 def fanlarpage(request):
     
     pagevisits(request)
@@ -190,3 +197,13 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect('login')
+
+def talaba_related(request):
+    guruhlar = Guruh.objects.all()
+    jinslar = Jinsi.objects.all()
+    viloyat = Viloyatlar.objects.all()
+    return render(request, 
+                  'talaba_related.html',
+                  {'guruhlar' : guruhlar,
+                  'jinslar' : jinslar,
+                  'viloyat' : viloyat})
