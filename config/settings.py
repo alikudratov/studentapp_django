@@ -13,8 +13,9 @@ SECRET_KEY = 'django-insecure--(ut3w728(=8c#&b67(^92_j1(!evj-i##1ebzskfx$7-bcc8z
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.5.220', '127.0.0.1']
+ALLOWED_HOSTS = ['192.168.5.220', '127.0.0.1', 'ddb6-31-40-25-31.ngrok-free.app']
 
+CSRF_TRUSTED_ORIGINS = ['https://ddb6-31-40-25-31.ngrok-free.app']
 
 # Application definition
 
@@ -34,6 +35,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap4',
     'dbapps',
     'django_recaptcha',
+    'django.contrib.humanize',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

@@ -1,13 +1,20 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
+
 
 {% block 'data' %}
-<h3>Talabalar qaysi fanlarga qiziqadi?</h2>
+<h3>Talabalar qaysi fanlarga qiziqadi?</br></br>
+Kitoblarning umumiy narxi: </br>{{ total_price.kitob_narxi__sum }} so`m
+</h3>
+
+
 {% for x in fanlar %}
     <p>
     <u><h4>{{ x.fanlar_nomi }}</h4></u>
     <div align = 'left'>
         {{ x.tarkibi|safe }}
+        Narxi: {{ x.kitob_narxi }} so`m
     </div>
     <div>
         {% if x.pdf_fayl %}

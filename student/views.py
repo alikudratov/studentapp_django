@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.db.models import Sum, Min, Max
 from django.contrib import messages
 from django.http import JsonResponse, FileResponse
 from django.contrib.auth.decorators import login_required
@@ -120,7 +121,9 @@ def fanlarpage(request):
 
     oxirgi_talaba = Talaba.objects.last()
 
-    return render(request, 'fanlar.html', {'fanlar': fanlar1, 'oxirgi_talaba':oxirgi_talaba})
+    total_price = Fanlar.objects.aggregate(Sum('kitob_narxi'))
+
+    return render(request, 'fanlar.html', {'fanlar': fanlar1, 'oxirgi_talaba':oxirgi_talaba, 'total_price':total_price})
 
 def webservice(request, id):
 

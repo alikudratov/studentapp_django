@@ -32,6 +32,7 @@ class CommentsForm(forms.ModelForm):
         exclude = ['published']
         widgets = {
             'talaba': forms.HiddenInput(),
+            'bahosi': forms.RadioSelect(),
         }
 
 class SearchForm(forms.Form):

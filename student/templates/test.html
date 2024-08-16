@@ -19,7 +19,7 @@
             <strong>Guruh rahbari:</strong> {{ talaba.guruh.guruh_rahbari }} </br>
             <strong>Jinsi:</strong> {{ talaba.jinsi }} </br>
             <strong>Viloyat:</strong> {{ talaba.viloyat }} </br>
-            <strong>Qaysi fanlarga qiziqadi: </strong>{{ talaba.fanlar.all|join:", " }}
+            <strong>Qaysi fanlarga qiziqadi:</strong> {{ talaba.fanlar.all|length }} ta  - {{ talaba.fanlar.all|join:", " }}
             
             </br></br>
       <div><a target="_blank" href="{% url 'webservice' talaba.id %}">

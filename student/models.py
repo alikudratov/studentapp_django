@@ -18,6 +18,7 @@ class Fanlar(models.Model):
     fanlar_nomi = models.CharField(max_length=50)
     tarkibi = tinymce_models.HTMLField()
     pdf_fayl = models.FileField(upload_to="uploads")
+    kitob_narxi = models.IntegerField()
 
     class Meta:
         managed = True
@@ -132,6 +133,14 @@ class Comments(models.Model):
     izoh = models.TextField()
     sanasi = models.DateTimeField(auto_now_add = True)
     published = models.BooleanField(default = False)
+    
+    STATUS_CHOICES = [
+        (0, 'Zo`r'),
+        (1, 'O`rtacha'),
+        (2, 'Qoniqarsiz'),
+    ]
+    
+    bahosi = models.IntegerField(choices=STATUS_CHOICES, default=0)
 
     class Meta:
         managed = True

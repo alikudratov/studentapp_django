@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.contrib.auth.models import Group
 from import_export.admin import ExportActionMixin
 from .models import *
 from django.utils.html import format_html
@@ -33,7 +34,14 @@ class TalabaAdmin(ExportActionMixin, admin.ModelAdmin):
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
-        return qs.filter(created_by=request.user)
+        # Check if the user is in a 'Rahbariyat'
+        if request.user.groups.filter(id = 1).exists():
+            # Default queryset if the user is in 'Rahbariyat'
+            return qs
+        else:
+            # Modify queryset if not in the group
+            return qs.filter(created_by=request.user)
+        
 
     list_filter = ["jinsi", "viloyat", "fanlar"]
 
