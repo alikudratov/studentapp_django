@@ -19,6 +19,7 @@ urlpatterns = [
     path('login/',  login_view, name='login'),
     path('logout/', logout_view, name='logout'),
     path('talaba_related/', talaba_related, name='talaba_related'),
+    path('excel/<str:stir>', export_excel)
 
 
 ]

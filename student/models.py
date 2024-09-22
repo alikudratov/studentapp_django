@@ -168,7 +168,6 @@ class Qarindosh(models.Model):
     def __str__(self):
         return self.fish
 
-
 class PageVisits(models.Model):
     ip_address = models.TextField(editable=False)
     path = models.TextField(editable=False)
@@ -178,3 +177,23 @@ class PageVisits(models.Model):
     class Meta:
         managed = True
         db_table = 'page_visits'
+
+class Maktablar(models.Model):
+    hudud = models.TextField(blank=True, null=True) 
+    tuman = models.TextField(blank=True, null=True) 
+    maktab = models.TextField(blank=True, null=True)
+    sinf = models.TextField(blank=True, null=True)  
+    fish = models.TextField(blank=True, null=True)  
+    id = models.TextField(primary_key=True)
+    stir = models.TextField(blank=True, null=True)  
+
+    class Meta:
+        managed = False
+        db_table = 'maktablar'
+
+class Stir(models.Model):
+    stir = models.TextField(primary_key=True)
+
+    class Meta:
+        managed = False
+        db_table = 'stir'

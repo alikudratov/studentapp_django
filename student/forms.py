@@ -9,7 +9,9 @@ class UserRegForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'password']
-        #fields = '__all__'
+        widgets = {
+            'password' : forms.PasswordInput()
+        } 
 
 class MurojaatForm(forms.ModelForm):
     captcha = ReCaptchaField()

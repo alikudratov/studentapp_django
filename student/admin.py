@@ -5,6 +5,10 @@ from .models import *
 from django.utils.html import format_html
 import admin_thumbnails
 
+from django.contrib.sessions.models import Session
+
+admin.site.register(Session)
+
 class QarindoshInline(admin.StackedInline):
     model = Qarindosh
     show_change_link = True

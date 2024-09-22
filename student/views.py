@@ -11,7 +11,10 @@ from django.http import HttpResponse
 from django.template.loader import get_template
 from xhtml2pdf import pisa
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 
+import openpyxl
+from django.http import HttpResponse
 
 from .models import *
 from .forms import *
@@ -46,14 +49,6 @@ def statistics():
 
     return context
 
-# talabaning rasm joyi, fanlar pdfs file
-# fayllar bilan ishlash + download qilish, pdflarni tayyorlash
-# objectsning barcha metodlarini bilish
-# user reg page (see chatgpt answers)
-# sozlamalar uchun func qilish (see tg channel)
-# top 50, top 30 django modules +++
-# return render(request, 'webservice.json',{'talaba':talaba1}, content_type='application/json')
-
 def index(request):
 
     pagevisits(request)
@@ -61,7 +56,9 @@ def index(request):
     user_reg_form = UserRegForm(request.POST or None)
 
     if user_reg_form.is_valid():
-        user_reg_form.save()
+        username = user_reg_form.cleaned_data["username"]
+        password = user_reg_form.cleaned_data["password"]
+        new_user = User.objects.create_user(username = username, password = password)
         return redirect('login')
 
     search_form = SearchForm(request.GET or None)
@@ -210,3 +207,31 @@ def talaba_related(request):
                   {'guruhlar' : guruhlar,
                   'jinslar' : jinslar,
                   'viloyat' : viloyat})
+
+def export_excel(request, stir):
+    x = stir
+    response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    response['Content-Disposition'] = f'attachment; filename="mydata_{x}.xlsx"'
+
+    workbook = openpyxl.Workbook()
+    worksheet = workbook.active
+    worksheet.title = 'My Data'
+
+        # Write header row
+    header = ['hudud', 'tuman', 'maktab', 'sinf', 'fish', 'id']
+    for col_num, column_title in enumerate(header, 1):
+        cell = worksheet.cell(row=1, column=col_num)
+        cell.value = column_title
+
+    # Write data rows
+    sinflar = ['7-', '8-', '9-', '10-']
+    for y in sinflar:
+        queryset = Maktablar.objects.filter(stir = x, sinf__startswith = y).values_list('hudud', 'tuman', 'maktab', 'sinf', 'fish', 'id')
+        for row_num, row in enumerate(queryset, 1):
+            for col_num, cell_value in enumerate(row, 1):
+                cell = worksheet.cell(row=row_num+1, column=col_num)
+                cell.value = cell_value
+
+    workbook.save(response)
+
+    return response
