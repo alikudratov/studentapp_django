@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'dbapps',
     'django_recaptcha',
     'django.contrib.humanize',
+    'django_select2',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

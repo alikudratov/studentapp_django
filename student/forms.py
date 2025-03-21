@@ -2,6 +2,8 @@ from django import forms
 from .models import *
 from django_recaptcha.fields import ReCaptchaField
 from django.contrib.auth.models import User
+from django_select2.forms import Select2Widget, Select2MultipleWidget
+
 
 class UserRegForm(forms.ModelForm):
     #captcha = ReCaptchaField()
@@ -19,6 +21,10 @@ class MurojaatForm(forms.ModelForm):
     class Meta:
         model = Murojaat
         fields = '__all__'
+        widgets = {
+            'viloyat': Select2Widget,
+            # 'many_to_many_field': Select2MultipleWidget,
+        }
 
 class TalabaUpdateForm(forms.ModelForm):
     class Meta:

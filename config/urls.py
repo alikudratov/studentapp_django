@@ -19,9 +19,8 @@ urlpatterns = [
     path('login/',  login_view, name='login'),
     path('logout/', logout_view, name='logout'),
     path('talaba_related/', talaba_related, name='talaba_related'),
-    path('excel/<str:stir>', export_excel)
-
-
+    path('excel/<str:stir>', export_excel),
+    path("select2/", include("django_select2.urls")),
 ]
 
 admin.site.site_header = "Talabalar MB"
