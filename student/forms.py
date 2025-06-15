@@ -22,8 +22,8 @@ class MurojaatForm(forms.ModelForm):
         model = Murojaat
         fields = '__all__'
         widgets = {
-            'viloyat': Select2Widget,
-            # 'many_to_many_field': Select2MultipleWidget,
+            #'viloyat': Select2Widget,
+             'viloyat': Select2MultipleWidget,
         }
 
 class TalabaUpdateForm(forms.ModelForm):
